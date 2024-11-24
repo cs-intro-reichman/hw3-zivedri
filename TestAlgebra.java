@@ -155,6 +155,9 @@ public class TestAlgebra {
         boolean test6 = Algebra.div(-15, -3) == 5;
         System.out.println("Test 6 (negative numbers): " + (test6 ? "PASS" : "FAIL"));
 
+        boolean test7 = Algebra.div(15, -3) == -5;
+        System.out.println("Test 7 (negative numbers): " + (test7 ? "PASS" : "FAIL"));
+
         int passed = (test1 ? 1 : 0) + (test2 ? 1 : 0) + (test3 ? 1 : 0) + 
                     (test4 ? 1 : 0) + (test5 ? 1 : 0) + (test6 ? 1 : 0);
         passedTests += passed;

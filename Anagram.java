@@ -6,7 +6,6 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
-
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -28,22 +27,56 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+		for (int i = 0;i < str1.length();i++){
+			if (str2.indexOf(str2.charAt(i)) < 0) {
+				return false;
+			}
+			if (str1.indexOf(str2.charAt(i)) < 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = str.toLowerCase();
+		String s = "";
+		for (int i = 0;i < str.length(); i++){
+			if (str.charAt(i) == ' '){
+				s += str.charAt(i);
+			}
+			if (str.charAt(i) >= 97 && str.indexOf(i) <= 122){
+				s += str.charAt(i);
+			}
+		}
+		return s;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = preProcess(str);
+		String randomStr = "";
+		while (str.length() > 0){
+			int i = (int) (Math.random() * str.length());
+			char c = str.charAt(i); // keeping the char we removed
+			randomStr += c; // adding the random character to a new string.
+			if (i == 0) { // if the character is the first in the string.
+				str = str.substring(i+1);
+			}
+			else if (i == str.length() - 1) { // if the character is the last in the string.
+				str = str.substring(0, i);
+			}
+			else {
+				String temp = str.substring(0,i); // removing the character that selected.
+				str = temp + str.substring(i+1 , str.length());
+			}
+		}
+		return randomStr;
 	}
 }
