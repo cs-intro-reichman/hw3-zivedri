@@ -9,9 +9,9 @@ public class LoanCalc {
     // interest rate (double, as a percentage), and number of payments (int).
 	public static void main(String[] args) {
 		// Gets the loan data
-		double loan = Double.parseDouble(args[0]);
-		double rate = Double.parseDouble(args[1]);
-		int n = Integer.parseInt(args[2]);
+		double loan = Double.parseDouble("75000");
+		double rate = Double.parseDouble("4");
+		int n = Integer.parseInt("24");
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
 		// Computes the periodical payment using brute force search
@@ -44,11 +44,9 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		iterationCounter = 0;
-		double rate2 = epsilon;
 		double g = loan/n;
 		while (endBalance(loan,rate,n,g) > 0){
-			g = (loan/n) + (loan*rate2);
-			rate2 += epsilon;
+			g += epsilon;
 			iterationCounter++;
 		}
 		return g;
@@ -65,7 +63,7 @@ public class LoanCalc {
 		// Sets L and H to initial values such that f(L) > 0, f(H) < 0,
        // implying that the function evaluates to zero somewhere between L and H.
 		// So, let’s assume that L and H were set to such initial values.
-		double paymentL = loan/n +loan*rate2;
+		double paymentL = loan;
 		double paymentH = loan/n;
 		double g = (paymentL + paymentH) / 2;
 		while ((paymentL-paymentH) > epsilon) {

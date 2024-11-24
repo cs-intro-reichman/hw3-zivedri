@@ -29,9 +29,6 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
-		if (str1.length() != str2.length()) {
-			return false;
-		}
 		for (int i = 0;i < str1.length();i++){
 			if (str2.indexOf(str2.charAt(i)) < 0) {
 				return false;
@@ -50,6 +47,9 @@ public class Anagram {
 		str = str.toLowerCase();
 		String s = "";
 		for (int i = 0;i < str.length(); i++){
+			if (str.charAt(i) == ' '){
+				s += str.charAt(i);
+			}
 			if (str.charAt(i) >= 97 && str.indexOf(i) <= 122){
 				s += str.charAt(i);
 			}
